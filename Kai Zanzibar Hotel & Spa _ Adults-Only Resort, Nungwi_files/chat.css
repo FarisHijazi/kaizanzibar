@@ -1,0 +1,600 @@
+@keyframes __akia_fadeIn {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes __akia_fadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes __akia_grow {
+  0% {
+    width: 1px;
+    height: 1px;
+    right: 12px;
+    top: 12px;
+  }
+  70% {
+    width: 24px;
+    height: 24px;
+    right: -5px;
+    top: -5px;
+  }
+  100% {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@keyframes __akia_spin {
+  0% {
+    transform: rotate(50deg);
+  }
+  70% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes __akia_popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@property --__akia-glow-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes __akia_glow_border_spin {
+  to { --__akia-glow-angle: 360deg; }
+}
+
+@keyframes __akia_glow_border_fade {
+  0%, 85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes __akia_chat_blob_drift_1 {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  50%      { transform: translate(22%, 28%) scale(1.18); }
+}
+
+@keyframes __akia_chat_blob_drift_2 {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  50%      { transform: translate(-18%, -22%) scale(0.88); }
+}
+
+@keyframes __akia_chat_blob_drift_3 {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  50%      { transform: translate(38%, 16%) scale(1.12); }
+}
+
+@keyframes __akia_chat_blob_drift_4 {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  50%      { transform: translate(-26%, 32%) scale(0.85); }
+}
+
+@keyframes __akia_notif_pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
+    filter: saturate(1);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 10px 2px rgba(229, 57, 53, 0.55);
+    filter: saturate(1.4);
+  }
+}
+
+@keyframes __akia_chatBoxPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.__akia_chat_root {
+  .__akia-chat-icon-wrapper {
+    animation: 0.3s ease-out 0s 1 __akia_popIn;
+    bottom: 30px;
+    height: 50px;
+    position: fixed;
+    right: 30px;
+    width: 50px;
+    z-index: 9999997;
+    transition: transform 0.15s ease-out;
+  }
+
+  .__akia-chat-icon-wrapper:has(.__akia-chat-icon:active) {
+    transform: scale(0.92);
+  }
+
+  .__akia-chat-icon {
+    background-color: #23c2cc;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 18px;
+    cursor: pointer;
+    height: 50px;
+    position: absolute;
+    width: 50px;
+    z-index: 9999997;
+    transition: background-color 0.3s ease;
+  }
+
+  .__akia-chat-icon-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    pointer-events: none;
+    transition: transform 0.25s ease-out, opacity 0.25s ease-out, filter 0.25s ease-out;
+  }
+
+  .__akia-chat-icon-blob {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    pointer-events: none;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  .__akia-chat-icon-blob-light {
+    background: radial-gradient(circle, color-mix(in oklab, #23c2cc 35%, white), transparent 65%);
+    width: 110%;
+    height: 110%;
+    top: -25%;
+    left: -10%;
+    opacity: 0.5;
+    filter: blur(6px);
+    animation-name: __akia_chat_blob_drift_1;
+    animation-duration: 4.2s;
+  }
+
+  .__akia-chat-icon-blob-soft {
+    background: radial-gradient(circle, color-mix(in oklab, #23c2cc 65%, white), transparent 65%);
+    top: 15%;
+    left: 20%;
+    opacity: 0.4;
+    filter: blur(7px);
+    animation-name: __akia_chat_blob_drift_2;
+    animation-duration: 5.6s;
+    animation-delay: 0.4s;
+  }
+
+  .__akia-chat-icon-blob-warm {
+    background: radial-gradient(circle, #23c2cc, transparent 65%);
+    top: -5%;
+    left: -25%;
+    opacity: 0.54;
+    filter: blur(6px) saturate(2.2);
+    animation-name: __akia_chat_blob_drift_3;
+    animation-duration: 4.9s;
+    animation-delay: 0.2s;
+  }
+
+  .__akia-chat-icon-blob-cool {
+    background: radial-gradient(circle, #23c2cc, transparent 65%);
+    top: 20%;
+    left: 25%;
+    opacity: 0.45;
+    filter: blur(7px) saturate(0.8) brightness(0.82);
+    animation-name: __akia_chat_blob_drift_4;
+    animation-duration: 5.3s;
+    animation-delay: 0.7s;
+  }
+
+  .__akia-chat-icon-bowtie-left {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 11px solid rgba(255, 255, 255, 0.95);
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    pointer-events: none;
+  }
+
+  .__akia-chat-icon-bowtie-right {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 11px solid rgba(255, 255, 255, 0.95);
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, -50%);
+    pointer-events: none;
+  }
+
+  .__akia-chat-icon::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 19px;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--__akia-glow-angle),
+      transparent 0%,
+      transparent 60%,
+      color-mix(in oklab, #23c2cc 10%, transparent) 70%,
+      color-mix(in oklab, #23c2cc 30%, transparent) 82%,
+      rgba(255, 255, 255, 0.5) 94%,
+      color-mix(in oklab, #23c2cc 30%, transparent) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    filter:
+      saturate(2.5) brightness(1.6)
+      drop-shadow(0 0 9px #23c2cc)
+      drop-shadow(0 0 16px color-mix(in oklab, #23c2cc 70%, white));
+    animation:
+      __akia_glow_border_spin 1s linear 4 forwards,
+      __akia_glow_border_fade 4s ease-out 1 forwards;
+    pointer-events: none;
+  }
+
+  .__akia-chat-icon:hover {
+    background-color: color-mix(in oklab, #23c2cc 88%, white);
+  }
+
+  .__akia-chat-box {
+    animation: 0.25s ease-out 0s 1 __akia_chatBoxPopIn;
+    transform-origin: bottom right;
+    background-color: #fff;
+    border-radius: 15px;
+    bottom: 110px;
+    box-sizing: border-box;
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    right: 30px;
+    z-index: 2147483647;
+    height: 700px;
+    max-height: 75vh;
+    width: 394px;
+    max-width: 100%;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .__akia-chat-box-iframe {
+    background-color: #fff;
+    border: 0;
+    border-radius: 11px;
+    width: 100%;
+    flex: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .__akia-chat-box-iframe::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  #__akia-chat-checkbox {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .__akia-chat-icon-close-x {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+    filter: blur(4px);
+    color: #fff;
+    pointer-events: none;
+    transition: transform 0.25s ease-out, opacity 0.25s ease-out, filter 0.25s ease-out;
+  }
+
+  .__akia-chat-icon-close-x::before,
+  .__akia-chat-icon-close-x::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    border-radius: 1px;
+  }
+
+  .__akia-chat-icon-close-x::before {
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .__akia-chat-icon-close-x::after {
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  #__akia-chat-checkbox:checked ~ .__akia-chat-icon-wrapper > .__akia-chat-icon > .__akia-chat-icon-inner {
+    transform: scale(0.6);
+    opacity: 0;
+    filter: blur(4px);
+  }
+
+  #__akia-chat-checkbox:checked ~ .__akia-chat-icon-wrapper > .__akia-chat-icon > .__akia-chat-icon-close-x {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  #__akia-chat-checkbox:checked ~ .__akia-chat-icon-wrapper > .__akia-chat-icon:hover {
+    background-color: color-mix(in oklab, #23c2cc 88%, white) !important;
+  }
+
+  #__akia-chat-checkbox:checked ~ .__akia-chat-box,
+  .__akia-chat-modal-open .__akia-chat-box {
+    display: flex !important;
+    flex-direction: column;
+    padding: 4px;
+    background-color: #f5f5f5;
+  }
+
+  .__akia-chat-notification-icon {
+    width: 14px;
+    height: 14px;
+    background-color: #e53935;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 999999997;
+    right: -2px;
+    top: -2px;
+    display: none;
+  }
+
+  #__akia-notification.hidden {
+    display: none;
+  }
+
+  #__akia-notification {
+    color: #333;
+    display: block;
+    max-width: 220px;
+    background-color: #fff;
+    font-size: 13px;
+    font-family: Helvetica, Arial, sans-serif;
+    position: fixed;
+    bottom: 30px;
+    right: 110px;
+    padding: 15px 20px;
+    line-height: 17px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    
+    animation: 0.2s ease-out 0s 1 __akia_fadeIn, __akia_fadeOut 0.2s ease-out 10s 1 forwards;
+    cursor: pointer;
+    z-index: 9999997;
+  }
+
+  .__akia-new-notif ~ .__akia-chat-notification-icon {
+    animation:
+      __akia_grow 0.1s ease-out 0s 1,
+      __akia_notif_pulse 1.6s ease-in-out 0.1s infinite;
+    display: block;
+  }
+
+  .__akia-banner {
+    background-color: rgb(0, 0, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    z-index: 999;
+  }
+
+  .__akia-banner-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    line-height: 14px;
+    font-size: 14px;
+  }
+
+  .__akia-banner-left {
+    flex: 1;
+    margin-right: 15px;
+  }
+
+  .__akia-banner-title {
+    font-size: 16px;
+    line-height: 16px;
+    color: #000;
+    margin: 0;
+    margin-bottom: 4px;
+  }
+
+  .__akia-banner-subtitle {
+    font-size: 12px;
+    line-height: 12px;
+    color: #000;
+  }
+
+  .__akia-banner-contact-form {
+    display: flex;
+  }
+
+  .__akia-banner-contact-form input {
+    box-sizing: border-box;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 0;
+    font-size: 12px;
+    line-height: 12px;
+    height: 30px !important;
+    padding: 8px 15px;
+    margin-right: 8px;
+    outline: none;
+    font-family:inherit;
+  }
+
+  .__akia-banner-contact-form button {
+    border-radius: 30px;
+    border: 0;
+    font-size: 12px;
+    line-height: 12px;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    padding: 8px 15px;
+  }
+
+  .__akia-banner-close-button {
+    margin-right: 15px;
+    background-image: url(/images/webchat/chat-close.png);
+    background-size: 30px;
+    bottom: 30px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .__akia-banner-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 0;
+    background-color: #fff;
+    padding: 0 15px;
+    margin-right: 15px;
+  }
+
+  #__akia-country-wrapper {
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    box-sizing: border-box;
+    font-size: 12px;
+    line-height: 12px;
+    outline: none;
+    padding: 0 8px 0 0;
+  }
+
+  #__akia-country-label {
+    line-height: 30px;
+    text-align: center;
+  }
+
+  #__akia-country {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  @media only screen and (max-width: 600px) and (orientation: portrait) {
+    .__akia-chat-box {
+      bottom: 0;
+      right: 0;
+      z-index: 999999999;
+      height: 100%;
+      max-height: 100%;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      border-radius: 0;
+      transition: 0.2s;
+    }
+
+    .__akia-hidden-chat-icon .__akia-chat-icon {
+      display: none;
+    }
+
+    .__akia-focused-chat-box.__akia-chat-box {
+      bottom: 0px;
+      height: 40vh;
+    }
+
+    .__akia-chat-box {
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+    }
+
+    #__akia-notification {
+      max-width: 180px;
+    }
+  }
+
+  .__akia-powered-by {
+    display: block !important;
+    padding: 6px 30px 2px !important;
+    text-transform: uppercase !important;
+    font-size: 9px !important;
+    text-decoration: none !important;
+    line-height: 9px !important;
+    color: #aaa !important;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
+    text-align: center !important;
+    transition: color 0.3s !important;
+    margin: 0 !important;
+    outline: 0 !important;
+  }
+
+  .__akia-powered-by:hover {
+    color: #333 !important;
+  }
+}
+
+/* Body scroll lock - must be outside the root wrapper since it targets body */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+  body.__akia-chat-modal-open {
+    overflow: hidden;
+    position: fixed;
+  }
+}

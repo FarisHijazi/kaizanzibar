@@ -27,6 +27,10 @@ html = re.sub(r"<script\b[^>]*/?>", "", html, flags=re.IGNORECASE)
 
 (out / "index.html").write_text(html, encoding="utf-8")
 
+# GitHub Pages: custom domain + disable Jekyll (so asset dirs aren't filtered)
+(out / "CNAME").write_text("kaizanzibar.co\n", encoding="utf-8")
+(out / ".nojekyll").write_text("", encoding="utf-8")
+
 # copy the assets folder under the clean name
 dst_files = out / "home_files"
 if dst_files.exists():
